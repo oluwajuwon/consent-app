@@ -7,7 +7,7 @@ import NotFoundPage from './pages/NotFoundPage';
 test('renders the not found page', () => {
   const wrapper = mount(
     <MemoryRouter initialEntries={['/random']}>
-    <App />)
+    <App />
     </MemoryRouter>
   );
   expect(wrapper.find(NotFoundPage)).toHaveLength(1);
