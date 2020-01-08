@@ -8,7 +8,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { menuItems } from './menuItems';
 import { useStyles } from './style';
 
-const SideBar = () => {
+const SideBarMenu = () => {
   const classes = useStyles();
   
   return (
@@ -27,4 +27,4 @@ const SideBar = () => {
   )
 }
 
-export default SideBar;
+export default SideBarMenu;

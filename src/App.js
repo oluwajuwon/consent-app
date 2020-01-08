@@ -4,12 +4,12 @@ import './App.css';
 import CollectedConsents from './pages/CollectedConsents';
 import GiveConsent from './pages/GiveConsent';
 import NotFoundPage from './pages/NotFoundPage';
-import SideBar from './components/SideBar';
+import SideBarMenu from './components/SideBarMenu';
 
 function App() {
   return (
     <div className="App">
-      <SideBar />
+      <SideBarMenu />
       <Switch>
         <Route component={CollectedConsents} path='/consents' />
         <Route component={GiveConsent} path='/give-consent' />
