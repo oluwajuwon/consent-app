@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import CollectedConsents from './pages/CollectedConsents';
 import GiveConsent from './pages/GiveConsent';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Switch>
         <Route component={CollectedConsents} path='/consents' />
         <Route component={GiveConsent} path='/give-consent' />
+        <Route component={NotFoundPage} />
       </Switch>
     </div>
   );
