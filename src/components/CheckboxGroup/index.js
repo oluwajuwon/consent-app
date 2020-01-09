@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -21,6 +21,7 @@ const CheckboxGroup = ({ checkItems, handleChange, checked }) => {
                   checked={checked[item.value]}
                   onChange={handleChange(item.value)}
                   value={item.value || ''}
+                  name={item.label}
                 />}
               label={item.label}
             />
