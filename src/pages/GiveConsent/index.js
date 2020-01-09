@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import { FormLabel } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import CheckboxGroup from '../../components/CheckboxGroup';
 
@@ -83,6 +84,9 @@ const GiveConsent = (props) => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField fullWidth id="user-email" placeholder="Email" type="email" value={email} variant="outlined" onChange={handleEmailChange} />
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <FormLabel>I agree to</FormLabel>
             </Grid>
             <Grid item xs={12} sm={12}>
               <CheckboxGroup checkItems={consentOptions} handleChange={handleCheckChange} checked={checkState} />

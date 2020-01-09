@@ -1,15 +1,39 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
+import PaginatedTable from '../../components/PaginatedTable';
 
+import { useStyles } from './style';
+const allConsents = [
+  {
+    name: 'name',
+    email: 'jay@emial.com',
+    selectedItems: [ 'one', 'two', 'three']
+  },
+  {
+    name: 'name',
+    email: 'jay@emial.com',
+    selectedItems: [ 'one', 'two', 'three']
+  },
+  {
+    name: 'name',
+    email: 'jay@emial.com',
+    selectedItems: [ 'one', 'two', 'three']
+  },
+  {
+    name: 'name',
+    email: 'jay@emial.com',
+    selectedItems: [ 'one', 'two', 'three']
+  }
+]
 const CollectedConsents = () => {
+  const classes = useStyles();
+
   return (
-    <div>
-    Collected Consents
-      <Grid container spacing={3}>
-        <Grid container item xs={12} spacing={3}>
-          the table
-        </Grid>
-      </Grid>
+    <div className={classes.consentsView}>
+      Collected Consents
+      <Container className={classes.container}>
+        <PaginatedTable allConsents={allConsents} />
+      </Container>
     </div>
   )
 }
