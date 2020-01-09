@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -10,13 +10,30 @@ import { consentOptions, consentOptionsState } from './consentOptions';
 const GiveConsent = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [checked, setChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  const [selectedItems, setSelectedItems] = useState([]);
   const [checkState, setCheckState] = React.useState(consentOptionsState);
   const classes = useStyles();
 
-  const handleCheckChange = name => event => {
+  useEffect(() => { 
+    handleButtonState();
+   }, [checkState])
+
+  const handleButtonState = () => {
+    if (Object.values(checkState).includes(true)) {
+      return setIsChecked(true);
+    }
+    setIsChecked(false);
+  };
+
+  const handleCheckChange = name => async (event) => {
     event.persist();
-    setCheckState({ ...checkState, [name]: event.target.checked });
+    await setCheckState({ ...checkState, [name]: event.target.checked });
+    
+    if(event.target.checked === true) {
+      return addSelectedItem(event.target);;
+    }
+    removeSelectedItem(event.target);
   };
 
   const handleNameChange = event => {
@@ -25,6 +42,26 @@ const GiveConsent = () => {
 
   const handleEmailChange = event => {
     setEmail(event.target.value);
+  }
+
+  const handleSubmit = () => {
+    console.log(selectedItems);
+  }
+
+  const addSelectedItem = item => {
+    if((selectedItems.indexOf(item.name) === -1) === true) {
+      return setSelectedItems([...selectedItems, item.name])
+    }
+  }
+
+  const removeSelectedItem = item => {
+    let tempArray = [...selectedItems]
+    const itemIndex = tempArray.indexOf(item.name)
+
+    if (itemIndex !== -1) {
+      tempArray.splice(itemIndex, 1);
+      return setSelectedItems(tempArray);
+    }
   }
 
   return (
@@ -41,7 +78,7 @@ const GiveConsent = () => {
           <CheckboxGroup checkItems={consentOptions} handleChange={handleCheckChange} checked={checkState} />
           </Grid>
           <Grid item xs={12} sm={12}>
-            <Button variant="contained" color="primary" disableElevation disabled={!checked}>
+            <Button variant="contained" color="primary" disableElevation disabled={!isChecked} onClick={handleSubmit}>
               Give consent
           </Button>
           </Grid>
