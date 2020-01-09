@@ -5,8 +5,22 @@ import {
   GIVE_CONSENT_FAILURE,
 } from '../consent/types';
 
+import { fetchMock } from '../../../__mocks__/apiCall';
 
 
+export const giveConsentSuccess = newConsent => ({
+  newConsent,
+  type: GIVE_CONSENT_SUCCESS,
+});
+
+export const giveConsent = userFeedback => dispatch => {
+  return fetchMock('/consent', userFeedback)
+  .then(giveConsentRequest => giveConsentRequest.json())
+  .then(giveConsentData => dispatch(giveConsentSuccess(giveConsentData.data)))
+  .catch(error => {
+    console.log(error);
+  })
+};
 
 export const consentInitialState = {
   data: [],
@@ -32,8 +46,9 @@ const consentReducer = (state = consentInitialState, action) => {
     case GIVE_CONSENT_SUCCESS:
       return {
         ...state,
-        newConsent: action.payload,
-        isLoading: action.isLoading,
+        data: [ ...state.data, action.newConsent ],
+        newConsent: action.newConsent,
+        isLoading: false,
         error: null,
       };
     case GIVE_CONSENT_FAILURE:
