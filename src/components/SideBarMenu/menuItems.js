@@ -1,4 +1,4 @@
-export const menuItems = [
+export const navMenuItems = [
   {
     name: 'Give Consent',
     path: '/give-consent'
