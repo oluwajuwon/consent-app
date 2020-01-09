@@ -6,7 +6,8 @@ export const useStyles = makeStyles(theme => ({
   },
   main: {
     flexGrow: 1,
-    textAlign: 'left'
+    textAlign: 'left',
+    marginTop: 20
   },
   btn: {
     backgroundColor: '#2fabd5',

@@ -6,13 +6,15 @@ import Grid from '@material-ui/core/Grid';
 import CollectedConsents from './pages/CollectedConsents';
 import GiveConsent from './pages/GiveConsent';
 import NotFoundPage from './pages/NotFoundPage';
+import Header from './components/Header';
 import SideBarMenu from './components/SideBarMenu';
 import store from './store';
 
 function App() {
   return (
     <Provider store={store}>
-      <div className="App">
+    <div className="App">
+    <Header />
         <Grid container spacing={1}>
           <Grid item xs>
             <SideBarMenu />

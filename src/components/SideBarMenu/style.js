@@ -13,5 +13,6 @@ export const useStyles = makeStyles(theme => ({
     borderBottomColor: '#efefef',
     borderBottomStyle: 'solid',
     borderBottomWidth: '1px'
-  }
+  },
+  toolbar: theme.mixins.toolbar,
 }))

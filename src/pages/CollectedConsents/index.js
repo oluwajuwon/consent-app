@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 
 import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+
 import PaginatedTable from '../../components/PaginatedTable';
 
 import { getConsents } from '../../store/modules/consent';
@@ -19,7 +21,7 @@ const CollectedConsents = props => {
 
   return (
     <div className={classes.consentsView}>
-      Collected Consents
+      <Typography className={classes.heading} variant="h5" align="left">Collected Consents</Typography>
       <Container className={classes.container}>
         <PaginatedTable allConsents={consents} />
       </Container>

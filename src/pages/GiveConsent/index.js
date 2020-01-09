@@ -6,6 +6,8 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { FormLabel } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+
 import CheckboxGroup from '../../components/CheckboxGroup';
 import Alert from '../../components/AlertBox';
 
@@ -108,7 +110,8 @@ const GiveConsent = (props) => {
   return (
     <div className={classes.main}>
     {showAlert && <Alert showAlert={showAlert} handleCloseAlert={closeAlert} type={alertType} message={alertMessage} />}
-      <Grid container spacing={3}>
+    <Typography className={classes.heading} variant="h5" align="left">Give Consent</Typography>
+      <Grid container spacing={0}>
       <form className={classes.form} autoComplete="off">
         <Grid container item xs={6} spacing={3}>
             <Grid item xs={12} sm={6}>
