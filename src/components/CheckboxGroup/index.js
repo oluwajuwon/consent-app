@@ -10,7 +10,7 @@ const CheckboxGroup = ({ checkItems, handleChange, checked }) => {
   const classes = useStyles();
 
   return (
-    <div>
+    <div className={classes.checkGroup}>
       <FormControl component="fieldset" className={classes.formControl}>
         <FormGroup>
           {checkItems.map(item => (
@@ -22,6 +22,7 @@ const CheckboxGroup = ({ checkItems, handleChange, checked }) => {
                   onChange={handleChange(item.value)}
                   value={item.value || ''}
                   name={item.label}
+                  color="default"
                 />}
               label={item.label}
             />

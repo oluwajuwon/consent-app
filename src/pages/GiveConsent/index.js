@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -7,30 +9,32 @@ import CheckboxGroup from '../../components/CheckboxGroup';
 import { useStyles } from './style';
 import { consentOptions, consentOptionsState } from './consentOptions';
 
-const GiveConsent = () => {
+import { giveConsent } from '../../store/modules/consent';
+
+const GiveConsent = (props) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [isChecked, setIsChecked] = useState(false);
+  const [isConsentChecked, setIsConsentChecked] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
   const [checkState, setCheckState] = React.useState(consentOptionsState);
   const classes = useStyles();
 
-  useEffect(() => { 
+  useEffect(() => {
     handleButtonState();
-   }, [checkState])
+  }, [checkState])
 
   const handleButtonState = () => {
     if (Object.values(checkState).includes(true)) {
-      return setIsChecked(true);
+      return setIsConsentChecked(true);
     }
-    setIsChecked(false);
+    setIsConsentChecked(false);
   };
 
   const handleCheckChange = name => async (event) => {
     event.persist();
     await setCheckState({ ...checkState, [name]: event.target.checked });
-    
-    if(event.target.checked === true) {
+
+    if (event.target.checked === true) {
       return addSelectedItem(event.target);;
     }
     removeSelectedItem(event.target);
@@ -44,12 +48,17 @@ const GiveConsent = () => {
     setEmail(event.target.value);
   }
 
-  const handleSubmit = () => {
-    console.log(selectedItems);
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    const userFeedback = {
+      name, email, selectedItems
+    }
+    props.giveConsent(userFeedback);
   }
 
   const addSelectedItem = item => {
-    if((selectedItems.indexOf(item.name) === -1) === true) {
+    if ((selectedItems.indexOf(item.name) === -1) === true) {
       return setSelectedItems([...selectedItems, item.name])
     }
   }
@@ -67,25 +76,39 @@ const GiveConsent = () => {
   return (
     <div className={classes.main}>
       <Grid container spacing={3}>
+      <form className={classes.form} autoComplete="off">
         <Grid container item xs={6} spacing={3}>
-          <Grid item xs={12} sm={6}>
-            <TextField fullWidth id="user-name" placeholder="Name" value={name} variant="outlined" onChange={handleNameChange} />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField fullWidth id="user-email" placeholder="Email" value={email} variant="outlined" onChange={handleEmailChange} />
-          </Grid>
-          <Grid item xs={12} sm={12}>
-          <CheckboxGroup checkItems={consentOptions} handleChange={handleCheckChange} checked={checkState} />
-          </Grid>
-          <Grid item xs={12} sm={12}>
-            <Button variant="contained" color="primary" disableElevation disabled={!isChecked} onClick={handleSubmit}>
-              Give consent
+            <Grid item xs={12} sm={6}>
+              <TextField fullWidth id="user-name" placeholder="Name" value={name} variant="outlined" onChange={handleNameChange} />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField fullWidth id="user-email" placeholder="Email" type="email" value={email} variant="outlined" onChange={handleEmailChange} />
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <CheckboxGroup checkItems={consentOptions} handleChange={handleCheckChange} checked={checkState} />
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <Button variant="contained" type="submit" color="primary" disableElevation disabled={!isConsentChecked} onClick={handleSubmit}>
+                Give consent
           </Button>
-          </Grid>
+            </Grid>
         </Grid>
+      </form>
+        
       </Grid>
     </div>
   )
 }
 
-export default GiveConsent;
+export const mapStateToProps = state => ({
+  consent: state.consent
+});
+
+export const mapDispatchToProps = dispatch => ({
+  giveConsent: userFeedback => dispatch(giveConsent(userFeedback)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GiveConsent);
