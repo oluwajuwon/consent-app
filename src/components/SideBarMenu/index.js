@@ -5,7 +5,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
-import { menuItems } from './menuItems';
+import { navMenuItems } from './menuItems';
 import { useStyles } from './style';
 
 const SideBarMenu = () => {
@@ -14,7 +14,7 @@ const SideBarMenu = () => {
   return (
     <Drawer variant="permanent" className={classes.drawer}>
       <List>
-        {menuItems.map(item => (
+        {navMenuItems.map(item => (
             <ListItem button key={item.name} className={classes.listItem}>
               <NavLink to={item.path} className={classes.navLink}>
                 <ListItemText primary={item.name} />
