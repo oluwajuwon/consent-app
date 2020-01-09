@@ -112,7 +112,7 @@ const CustomPaginationActionsTable = ({ allConsents }) => {
                 {row.name}
               </TableCell>
               <TableCell align="left">{row.email}</TableCell>
-              <TableCell align="left">{row.selectedItems.map(item =>  `${item}, `)}</TableCell>
+              <TableCell align="left">{row.selectedItems && row.selectedItems.map(item =>  `${item}, `)}</TableCell>
             </TableRow>
           ))}
 

@@ -6,5 +6,13 @@ export const useStyles = makeStyles(theme => ({
   },
   main: {
     flexGrow: 1,
+    textAlign: 'left'
+  },
+  btn: {
+    backgroundColor: '#2fabd5',
+    color: 'white',
+    "&:hover, &:focus": {
+      backgroundColor: '#2fabd5'
+    }
   }
 }));

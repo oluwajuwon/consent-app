@@ -22,9 +22,25 @@ export const giveConsent = userFeedback => dispatch => {
   })
 };
 
+export const getConsentsSuccess = allConsents => ({
+  allConsents,
+  type: GET_ALL_CONSENTS_SUCCESS,
+})
+
+export const getConsents = () => dispatch => {
+  return fetchMock('/consents')
+  .then(getConsentsRequest => getConsentsRequest.json())
+  .then(getConsentsData => dispatch(getConsentsSuccess(getConsentsData.data)))
+  .catch(error => {
+    console.log(error);
+  })
+}
+
 export const consentInitialState = {
   data: [],
   newConsent: {},
+  success: null,
+  error: null,
 };
 
 const consentReducer = (state = consentInitialState, action) => {
@@ -33,14 +49,14 @@ const consentReducer = (state = consentInitialState, action) => {
     case GET_ALL_CONSENTS_SUCCESS:
       return {
         ...state,
-        data: action.payload,
-        isLoading: action.isLoading,
+        data: action.allConsents,
+        success: true,
         error: null,
       };
     case GET_ALL_CONSENTS_FAILURE:
       return {
         ...state,
-        isLoading: action.isLoading,
+        success: null,
         error: action.error,
       }
     case GIVE_CONSENT_SUCCESS:
@@ -48,13 +64,13 @@ const consentReducer = (state = consentInitialState, action) => {
         ...state,
         data: [ ...state.data, action.newConsent ],
         newConsent: action.newConsent,
-        isLoading: false,
+        success: true,
         error: null,
       };
     case GIVE_CONSENT_FAILURE:
       return {
         ...state,
-        isLoading: action.isLoading,
+        success: null,
         error: action.error,
       };
     default:
