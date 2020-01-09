@@ -13,8 +13,8 @@ const Header  = () => {
     <AppBar position="static" className={classes.appBar}>
       <Toolbar>
         <Typography variant="h6" className={classes.title}>
-            Consent App
-          </Typography>
+          Consent App
+        </Typography>
       </Toolbar>
     </AppBar>
   )
