@@ -9,7 +9,7 @@ export const useStyles = makeStyles(theme => ({
     minWidth: 500,
   },
   tableHeader: {
-    backgroundColor: '#3f51b5',
+    backgroundColor: '#2fabd5',
   },
   tableHeaderTitle: {
     color: '#fff'

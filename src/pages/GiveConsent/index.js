@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
+
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { FormLabel } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import CheckboxGroup from '../../components/CheckboxGroup';
+import Alert from '../../components/AlertBox';
 
 import { useStyles } from './style';
 import { consentOptions, consentOptionsState } from './consentOptions';
@@ -15,6 +17,9 @@ import { giveConsent } from '../../store/modules/consent';
 const GiveConsent = (props) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertType, setAlertType] = useState('');
+  const [alertMessage, setAlertMessage] = useState('');
   const [isConsentChecked, setIsConsentChecked] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
   const [checkState, setCheckState] = React.useState(consentOptionsState);
@@ -23,6 +28,23 @@ const GiveConsent = (props) => {
   useEffect(() => {
     handleButtonState();
   }, [checkState])
+
+  useEffect(() => {
+    const { consent } = props
+    handleGiveConsentResponse(consent);
+    
+  }, [props.consent])
+
+  const handleGiveConsentResponse = (consent) => {
+      if(consent.success === true && name !== '') {
+        setShowAlert(true);
+        setAlertType('success');
+        setAlertMessage('successfully given consent');
+        setCheckState(consentOptionsState);
+        setName('');
+        setEmail('');
+      }
+  }
 
   const handleButtonState = () => {
     if (Object.values(checkState).includes(true)) {
@@ -52,10 +74,19 @@ const GiveConsent = (props) => {
   const handleSubmit = event => {
     event.preventDefault();
 
+    if( name === '' || email === '') {
+      setShowAlert(true);
+      setAlertType('error');
+      return setAlertMessage('please add name and email');
+    }
     const userFeedback = {
       name, email, selectedItems
     }
     props.giveConsent(userFeedback);
+  }
+
+  const closeAlert = () => {
+    setShowAlert(false);
   }
 
   const addSelectedItem = item => {
@@ -76,23 +107,24 @@ const GiveConsent = (props) => {
 
   return (
     <div className={classes.main}>
+    {showAlert && <Alert showAlert={showAlert} handleCloseAlert={closeAlert} type={alertType} message={alertMessage} />}
       <Grid container spacing={3}>
       <form className={classes.form} autoComplete="off">
         <Grid container item xs={6} spacing={3}>
             <Grid item xs={12} sm={6}>
-              <TextField fullWidth id="user-name" placeholder="Name" value={name} variant="outlined" onChange={handleNameChange} />
+              <TextField className={classes.input} fullWidth id="user-name" placeholder="Name" value={name} variant="outlined" onChange={handleNameChange} />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField fullWidth id="user-email" placeholder="Email" type="email" value={email} variant="outlined" onChange={handleEmailChange} />
             </Grid>
             <Grid item xs={12} sm={12}>
-              <FormLabel>I agree to</FormLabel>
+              <FormLabel>I agree to:</FormLabel>
             </Grid>
             <Grid item xs={12} sm={12}>
               <CheckboxGroup checkItems={consentOptions} handleChange={handleCheckChange} checked={checkState} />
             </Grid>
             <Grid item xs={12} sm={12}>
-              <Button variant="contained" type="submit" color="primary" disableElevation disabled={!isConsentChecked} onClick={handleSubmit}>
+              <Button variant="contained" type="submit" className={classes.btn} disableElevation disabled={!isConsentChecked} onClick={handleSubmit}>
                 Give consent
           </Button>
             </Grid>
