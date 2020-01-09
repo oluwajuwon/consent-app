@@ -14,10 +14,10 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <Grid container spacing={1}>
-          <Grid item xs={12} sm={2}>
+          <Grid item xs>
             <SideBarMenu />
           </Grid>
-          <Grid item xs={12} sm={10}>
+          <Grid item xs={10}>
             <Switch>
               <Route component={CollectedConsents} path='/consents' />
               <Route component={GiveConsent} path='/give-consent' />
@@ -27,7 +27,6 @@ function App() {
         </Grid>
       </div>
     </Provider>
-    
   );
 }
 
