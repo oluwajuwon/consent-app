@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
 import Drawer from '@material-ui/core/Drawer';
+import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -12,7 +13,9 @@ const SideBarMenu = () => {
   const classes = useStyles();
   
   return (
-    <Drawer variant="permanent" className={classes.drawer}>
+    <Drawer variant="permanent" className={classes.drawer} anchor="left">
+      <div className={classes.toolbar} />
+      <Divider />
       <List>
         {navMenuItems.map(item => (
             <ListItem button key={item.name} className={classes.listItem}>
