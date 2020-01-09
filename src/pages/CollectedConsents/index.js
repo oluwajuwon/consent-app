@@ -14,7 +14,6 @@ const CollectedConsents = props => {
   const { consents, getConsents } = props;
   const classes = useStyles();
 
-  console.log(consents, 'changed');
   useEffect(() => {
     getConsents();
   },[])
