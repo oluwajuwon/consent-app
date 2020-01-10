@@ -14,7 +14,7 @@ A demo consent app for fulfilling GDPR requirements
 ## Technology
   - Frontend - 
       - ReactJs - Frontend javascript library for building user interfaces
-      - MAterial UI - frontend library fro ReactJs
+      - Material-UI - UI Framework for ReactJs
       - Redux (for state management) - It is a predictable state container for JavaScript apps
       - CSS
 
