@@ -1,6 +1,6 @@
 export const allConsents = [
   {
-    name: 'Bojeck Horseman',
+    name: 'Bojack Horseman',
     email: 'bojack@horseman.com',
     selectedItems: [ 'Receive newsletter', 'Be shown targeted ads' ]
   },
