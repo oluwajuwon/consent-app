@@ -17,5 +17,6 @@ describe('The Checkbox Group component', () => {
   it('should render The Checkbox group correctly', () => {
     expect(wrapper.find('CheckboxGroup').length).toBe(1);
     expect(wrapper.find('input').length).toBe(1);
+    expect(wrapper.find("input[value='newsletter']").prop('checked')).toEqual(false);
   });
 });

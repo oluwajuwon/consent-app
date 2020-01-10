@@ -14,5 +14,6 @@ describe('The Alert box component', () => {
   let wrapper = mount(<AlertBox {...props} />)
   it('should render The Alert box correctly', () => {
     expect(wrapper.find('Alert').length).toBe(1);
+    expect(wrapper.find('Alert').prop('type')).toEqual('success');
   });
 });
