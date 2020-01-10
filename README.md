@@ -61,3 +61,6 @@ A demo consent app for fulfilling GDPR requirements by giving users the ability 
   navigate to `localhost:3000/consents`, and navigate through the pages of consents on the table
   
 ```
+
+## Author
+  Oluwajuwon Fagbohungbe
