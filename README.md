@@ -1,6 +1,6 @@
 
 # Consent-App
-A demo consent app for fulfilling GDPR requirements
+A demo consent app for fulfilling GDPR requirements by giving users the ability to choose what data any platform can decide to use
 
 
 # Features
@@ -25,7 +25,7 @@ A demo consent app for fulfilling GDPR requirements
   git clone https://github.com/oluwajuwon/consent-app.git
     
   //  Switch to directory
-  cd Fast-Food-Fast-Frontend
+  cd consent-app
 
   //  Install Package dependencies
   npm install
