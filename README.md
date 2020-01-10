@@ -33,7 +33,7 @@ A demo consent app for fulfilling GDPR requirements by giving users the ability 
   //  Start the application
   npm start
 
-  //  View, test and use the API endpoints
+  //  Check out the pages
   navigate to localhost:3000/give-consents
   
 ```
@@ -43,3 +43,21 @@ A demo consent app for fulfilling GDPR requirements by giving users the ability 
 ### Test Tools
  - Jest - An open JavaScript testing library maintained by facebook
  - Enzyme - JavaScript Testing utility for React that makes it easier to test your React Components' output
+
+### Base URL
+  `localhost:3000`
+
+### Routes
+  `/consents` - to view all consents
+
+  `/give-consent` -  to give specific consent9s0
+
+## How to use
+  ```
+  //  To give consents
+  navigate to `localhost:3000/give-consent` and fill out the fields and submit
+    
+  //  To check all consents, plus newly added ones
+  navigate to `localhost:3000/consents`, and navigate through the pages of consents on the table
+  
+```
