@@ -115,7 +115,7 @@ const GiveConsent = (props) => {
       <form className={classes.form} autoComplete="off">
         <Grid container item xs={6} spacing={3}>
             <Grid item xs={12} sm={6}>
-              <TextField className={classes.input} fullWidth id="user-name" placeholder="Name" value={name} variant="outlined" onChange={handleNameChange} />
+              <TextField fullWidth id="user-name" placeholder="Name" value={name} variant="outlined" onChange={handleNameChange} />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField fullWidth id="user-email" placeholder="Email" type="email" value={email} variant="outlined" onChange={handleEmailChange} />
