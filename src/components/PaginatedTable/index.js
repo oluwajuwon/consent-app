@@ -76,7 +76,7 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-const CustomPaginationActionsTable = ({ allConsents }) => {
+const PaginatedTable = ({ allConsents }) => {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(2);
@@ -145,4 +145,4 @@ const CustomPaginationActionsTable = ({ allConsents }) => {
   );
 }
 
-export default CustomPaginationActionsTable;
+export default PaginatedTable;
