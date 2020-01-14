@@ -129,7 +129,7 @@ const GiveConsent = (props) => {
             <Grid item xs={12} sm={12}>
               <Button variant="contained" type="submit" className={classes.btn} disableElevation disabled={!isConsentChecked} onClick={handleSubmit}>
                 Give consent
-          </Button>
+              </Button>
             </Grid>
         </Grid>
       </form>
