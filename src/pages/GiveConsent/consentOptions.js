@@ -14,8 +14,5 @@ export const consentOptions = [
 ]
 
 export const consentOptionsState = consentOptions.reduce((obj, item) => {
-  return {
-    ...obj,
-    [item.value]: false,
-  };
+  return { ...obj,  [item.value]: false, };
 }, {});
