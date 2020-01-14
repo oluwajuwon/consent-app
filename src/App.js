@@ -8,6 +8,8 @@ import GiveConsent from './pages/GiveConsent';
 import NotFoundPage from './pages/NotFoundPage';
 import Header from './components/Header';
 import SideBarMenu from './components/SideBarMenu';
+import LandingPage from './pages/LandingPage';
+
 import store from './store';
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
           </Grid>
           <Grid item xs={10}>
             <Switch>
+              <Route exact component={LandingPage} path='/' />
               <Route component={CollectedConsents} path='/consents' />
               <Route component={GiveConsent} path='/give-consent' />
               <Route component={NotFoundPage} />
